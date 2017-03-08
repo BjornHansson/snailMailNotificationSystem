@@ -1,5 +1,5 @@
 /**
-  Ultrasonic Sensor code inspired from: https://codebender.cc/sketch:356078#HC-SR04%20Ultrasonic%20Sensor%20Example.ino
+  Ultrasonic sensor code inspired from: https://codebender.cc/sketch:356078#HC-SR04%20Ultrasonic%20Sensor%20Example.ino
 
   Ultrasonic sensor to detect delivered snail mails.
   Outputs to a serial monitor.
@@ -48,6 +48,8 @@ void loop() {
     deliveredMails++;
     Serial.print("Total delivered mails: ");
     Serial.println(deliveredMails);
+    // Extra wait when a new mail is detected, because we do not want to register the same several times
+    delay(1000);
   }
   // Wait at least 1s before next measurement
   delay(1000);

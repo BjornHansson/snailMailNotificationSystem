@@ -4,7 +4,7 @@
 void setup() {
   pinMode(13, OUTPUT);
   Wifi.begin();
-  Wifi.println("WebServer Server is up");
+  Wifi.println("WebServer is up");
 }
 
 void loop() {
@@ -23,13 +23,17 @@ void process(WifiData client) {
 }
 
 void digitalCommand(WifiData client) {
-  int pin;
-  // Read pin number
-  pin = client.parseInt();
+  int clearMails = client.parseInt();
+  int nrOfMails = 1;
+  if(clearMails == 1) {
+    nrOfMails = 0;
+  }
   // Send feedback to client
   client.println("HTTP/1.1 200 OK");
   client.println("Access-Control-Allow-Origin: *");
   client.println();
-  client.println("{\"mails\":1}");
+  client.print("{\"mails\":");
+  client.print(nrOfMails);
+  client.println("}");
   client.print(EOL); //char terminator
 }

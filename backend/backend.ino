@@ -16,9 +16,9 @@ const unsigned int ULTRASONIC_TRIG_PIN = 10;
 // Delay time value (currently 1s)
 const unsigned int TIME = 1000;
 // Value to recognize if mail is delivered (use higher value if the mailbox is larger)
-const unsigned int ULTRASONIC_MAX = 500;
+const unsigned int ULTRASONIC_MAX = 1600;
 // Value to recognize if user is emptying the mailbox (use higher value if it is bright in the mailbox)
-const unsigned int PHOTORESISTOR_MAX = 870;
+const unsigned int PHOTORESISTOR_MAX = 400;
 // Counter for delivered mails
 unsigned int deliveredMails = 0;
 
@@ -36,7 +36,21 @@ void setup() {
 
 // Main code, to run repeatedly
 void loop() {
-  // Start with the code for checking the ultrasonic sensor
+  // Check if a new mail is delivered
+  checkIfNewMail();
+
+  // Check if the mailbox is open
+  while (analogRead(PHOTORESISTOR_PIN) > PHOTORESISTOR_MAX) {
+    mailboxIsOpen();
+  }
+
+  // Process client communication via wifi
+  while (Wifi.available()) {
+    process(Wifi);
+  }
+}
+
+void checkIfNewMail() {
   unsigned long t1;
   unsigned long t2;
   unsigned long pulseWidth;
@@ -62,17 +76,7 @@ void loop() {
     newMail();
   }
   // Wait before next measurement
-  delay(TIME/2);
-
-  // Check if the mailbox is open
-  while (analogRead(PHOTORESISTOR_PIN) > PHOTORESISTOR_MAX) {
-    mailboxIsOpen();
-  }
-
-  // Process client communication via wifi
-  while (Wifi.available()) {
-    process(Wifi);
-  }
+  delay(TIME / 2);
 }
 
 void newMail() {

@@ -16,7 +16,7 @@ const unsigned int ULTRASONIC_TRIG_PIN = 10;
 // Delay time value (currently 1s)
 const unsigned int TIME = 1000;
 // Value to recognize if mail is delivered (use higher value if the mailbox is larger)
-const unsigned int ULTRASONIC_MAX = 1600;
+const unsigned int ULTRASONIC_MAX = 1160;
 // Value to recognize if user is emptying the mailbox (use higher value if it is bright in the mailbox)
 const unsigned int PHOTORESISTOR_MAX = 400;
 // Counter for delivered mails
@@ -60,7 +60,7 @@ void checkIfNewMail() {
   delayMicroseconds(10);
   digitalWrite(ULTRASONIC_TRIG_PIN, LOW);
   // Wait for pulse on echo pin
-  while ( digitalRead(ULTRASONIC_ECHO_PIN) == 0 );
+  while (digitalRead(ULTRASONIC_ECHO_PIN) == 0);
   // Measure how long the echo pin was held high (pulse width). Note: the micros() counter will overflow after ~70 min
   t1 = micros();
   while (digitalRead(ULTRASONIC_ECHO_PIN) == 1);
@@ -85,7 +85,7 @@ void newMail() {
   Serial.print("Total delivered mails: ");
   Serial.println(deliveredMails);
   // Extra wait when a new mail is detected, because we do not want to register the same several times
-  delay(TIME);
+  delay(TIME*4);
 }
 
 void mailboxIsOpen() {

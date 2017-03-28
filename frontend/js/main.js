@@ -2,8 +2,8 @@ $(document).ready(function() {
     'use strict'; // Prevents certain (unsafe) actions from being taken and throws more exceptions.
     const ALERT_ELEMENT = '#alert';
     const MAILS_ELEMENT = '#mails';
-    const URL = 'http://192.168.1.9/arduino/digital/';
-    const MILLISECONDS = 10000;
+    const URL = 'http://172.20.10.4/arduino/digital/';
+    const MILLISECONDS = 15000;
     const TITLE = 'Snail Mail Notification System';
 
     function getMails() {

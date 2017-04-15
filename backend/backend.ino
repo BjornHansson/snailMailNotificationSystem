@@ -16,7 +16,7 @@ const unsigned int ULTRASONIC_TRIG_PIN = 10;
 // Delay time value (currently 1s)
 const unsigned int TIME = 1000;
 // Value to recognize if mail is delivered (use higher value if the mailbox is larger)
-const unsigned int ULTRASONIC_MAX = 1160;
+const unsigned int ULTRASONIC_MAX = 1150;
 // Value to recognize if user is emptying the mailbox (use higher value if it is bright in the mailbox)
 const unsigned int PHOTORESISTOR_MAX = 400;
 // Counter for delivered mails
@@ -76,7 +76,7 @@ void checkIfNewMail() {
     newMail();
   }
   // Wait before next measurement
-  delay(TIME / 2);
+  delay(TIME / 4);
 }
 
 void newMail() {

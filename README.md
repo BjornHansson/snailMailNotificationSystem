@@ -2,4 +2,4 @@
 Notification system for snail mail
 
 ## Report
-http://bjornhansson.se/academic/Snail_Mail_Notification_System_Report_Hansson.pdf
+https://bjornhansson.github.io/documents/Snail_Mail_Notification_System_Report_Hansson.pdf
